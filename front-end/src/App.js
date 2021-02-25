@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import Login from './Login.js';
+import Register from './Register.js';
+import { Route, Link, Switch } from 'react-router-dom';
 
 function App() {
   return (
@@ -19,8 +21,10 @@ function App() {
           Learn React
         </a>
       </header>
-
+      <Register/>
       <Login/>
+      
+   
     </div>
   );
 }

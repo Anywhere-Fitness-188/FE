@@ -33,7 +33,7 @@ function Login(){
                    Password:
                    <input type='text' name='password' onChange={userInput}/>
                </label><br/>
-               <button disabled={disabled}>Log In</button>
+               <button disabled={disabled} onClick={()=> alert(`Welcome ${user.username}!`)}>Log In</button>
            </form>
        </div>
     )
