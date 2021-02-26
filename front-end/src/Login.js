@@ -7,6 +7,8 @@ const schema = yup.object().shape({
     password: yup.string().required('Please enter your password'),
 })
 
+const URL = 'https://fittness.herokuapp.com/api/auth/login'
+
 
 function Login(){
 
@@ -15,16 +17,27 @@ function Login(){
 
 
     const userInput = event=>{
-        setUser({...user, [event.target.name]: event.target.value});
+        setUser({...user, [event.target.name]: event.target.value});//'...user' may be unneccesary?
     }
 
+    const userLogin= event=>{
+        event.preventDefault();
+        axios.post(URL, user)
+        .then(res=>{
+            console.log(res.data);
+            alert(`Welcome ${user.username}!`)
+        })
+        .catch(err=>{
+            console.log(err.data);
+        })
+    }
     useEffect(()=>{
         schema.isValid(user).then(valid => setDisabled(!valid))
     }, [user])
 
     return(
        <div>
-           <form>
+           <form onSubmit={userLogin}>
                <label>
                    Username:
                    <input type='text' name='username' onChange={userInput}/>
@@ -33,7 +46,7 @@ function Login(){
                    Password:
                    <input type='text' name='password' onChange={userInput}/>
                </label><br/>
-               <button disabled={disabled} onClick={()=> alert(`Welcome ${user.username}!`)}>Log In</button>
+               <button disabled={disabled}>Log In</button>
            </form>
        </div>
     )
