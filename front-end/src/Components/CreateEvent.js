@@ -80,8 +80,7 @@ const CreateEvent = () => {
           Event Name:
           <input 
             onChange={changeName} 
-            type="text" 
-            value={event.name} />
+            type="text" value={event.name} />
         </h3>
       )}
       {create && (
