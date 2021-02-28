@@ -1,11 +1,16 @@
-import logo from "./logo.svg";
+
+import Login from './Login.js';
+import Register from './Register.js';
 import "./App.css";
 import CreateEvent from "./Components/CreateEvent";
+
 
 function App() {
   return (
     <div className="App">
-      <CreateEvent />
+      <Register/>
+      <Login/>
+      <CreateEvent /> 
     </div>
   );
 }
