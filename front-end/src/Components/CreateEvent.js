@@ -78,7 +78,9 @@ const CreateEvent = () => {
       {create && (
         <h3>
           Event Name:
-          <input onChange={changeName} type="text" value={event.name} />
+          <input 
+            onChange={changeName} 
+            type="text" value={event.name} />
         </h3>
       )}
       {create && (
