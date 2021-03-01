@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
-import axiosWithAuth from "../api/axiosWithAuth";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 const CreateEvent = () => {
   const [create, setCreate] = useState(false);
@@ -47,7 +47,7 @@ const CreateEvent = () => {
 
   const eventPost = () => {
     axiosWithAuth()
-      .post("/classes", {
+      .post("/api/classes", {
         name: event.name,
         type: event.type,
         time: event.time,
