@@ -55,7 +55,7 @@ function Register(){
                 </label><br/>
                 <label >
                     Password:
-                    <input type='text' name='password' onChange={userInput}/>
+                    <input type='password' name='password' onChange={userInput}/>
                 </label><br/>
                 <label>
                     {/* Should this maybe be a checkbox or selection dropdown instead of a string? */}

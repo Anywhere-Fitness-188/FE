@@ -51,7 +51,7 @@ function Login(){
                </label><br/>
                <label>
                    Password:
-                   <input type='text' name='password' onChange={userInput}/>
+                   <input type='password' name='password' onChange={userInput}/>
                </label><br/>
                <button disabled={disabled}>Log In</button>
            </form>

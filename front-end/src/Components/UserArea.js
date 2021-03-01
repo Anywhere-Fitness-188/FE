@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch, useHistory } from 'react-router-dom';
 import PrivateRoute from "./PrivateRoute";
 import CreateEvent from "./CreateEvent";
 
-const AuthRouter = () => {
+const UserArea = () => {
+    const history = useHistory();
     // logout function
     const logout = () => {
-        localStorage.removeItem('token');  
+        localStorage.removeItem('token');
+        history.push('/');  
     }
 
     return (
@@ -16,11 +18,11 @@ const AuthRouter = () => {
                 <button onClick={logout}>Log Out</button>
                 <Switch>
                 <PrivateRoute exact path="/fitness" component={CreateEvent} />
-                {/* <Route path="/" component={Login} />  */}
+                
                 </Switch>
             </Router>
         </div>
     );
 }
 
-export default AuthRouter;
+export default UserArea;
