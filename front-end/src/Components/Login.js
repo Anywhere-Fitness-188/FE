@@ -12,7 +12,7 @@ const URL = 'https://fittness.herokuapp.com/api/auth/login';
 
 
 
-function Login(){
+const Login = () => {
 
     const [user, setUser] = useState({username:'', password:''})
     const [disabled, setDisabled] = useState(true);
@@ -31,11 +31,14 @@ function Login(){
             console.log(res.data);
             localStorage.setItem('token', res.data.token)
             alert(`Welcome ${user.username}!`);
-            history.push('/fitness');
+            setTimeout(() => {
+                history.push('/fitness');
+            }, 5000)
         })
         .catch(err=>{
             console.log(err.data);
         })
+        
     }
     useEffect(()=>{
         schema.isValid(user).then(valid => setDisabled(!valid))

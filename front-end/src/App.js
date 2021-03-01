@@ -4,7 +4,7 @@ import PrivateRoute from "./Components/PrivateRoute";
 import AuthRouter from "./Components/AuthRouter";
 import UserArea from "./Components/UserArea";
 import "./App.css";
-import CreateEvent from "./Components/CreateEvent";
+
 
 
 function App() {

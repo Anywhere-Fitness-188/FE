@@ -67,7 +67,7 @@ function Register(){
                     </select>
                 </label><br/>
                 <label>
-                    New User?
+                    
                     <button disabled={disabled}>Register</button><br/>
                     Already a Member?
                     <button>Login</button>

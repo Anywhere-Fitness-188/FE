@@ -11,11 +11,11 @@ const AuthRouter = () => (
                 <Link to="/"> Login</Link>
                 </li>
                 <li>
-                <Link to="/home">Home</Link>
+                <Link to="/register">Home</Link>
                 </li>
             </ul>
             <Switch>
-              <Route exact path="/home" component={Register} />
+              <Route exact path="/register" component={Register} />
               <Route path="/" component={Login} /> 
             </Switch>
         </Router>
