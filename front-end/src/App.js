@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
-import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from "./Components/PrivateRoute";
 import AuthRouter from "./Components/AuthRouter";
-import Login from './Components/Login.js';
-import Register from './Components/Register.js';
+import UserArea from "./Components/UserArea";
 import "./App.css";
 import CreateEvent from "./Components/CreateEvent";
 
@@ -19,14 +18,12 @@ function App() {
         </header>
         <section className="main-content">
           <Switch>
-            {/* <Route exact path="/home" component={Register} /> */}
+            <PrivateRoute exact path="/fitness" component={UserArea} />
             <Route path="/" component={AuthRouter} />
           </Switch>
         </section>
         
       
-      {/* <Login/>
-      <CreateEvent />  */}
     </div>
     </Router>
   );

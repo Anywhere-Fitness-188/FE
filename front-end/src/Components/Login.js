@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import axios from 'axios';
 
@@ -7,13 +8,16 @@ const schema = yup.object().shape({
     password: yup.string().required('Please enter your password'),
 })
 
-const URL = 'https://fittness.herokuapp.com/api/auth/login'
+const URL = 'https://fittness.herokuapp.com/api/auth/login';
+
 
 
 function Login(){
 
     const [user, setUser] = useState({username:'', password:''})
     const [disabled, setDisabled] = useState(true);
+
+    const history = useHistory();
 
 
     const userInput = event=>{
@@ -25,7 +29,9 @@ function Login(){
         axios.post(URL, user)
         .then(res=>{
             console.log(res.data);
-            alert(`Welcome ${user.username}!`)
+            localStorage.setItem('token', res.data.token)
+            alert(`Welcome ${user.username}!`);
+            history.push('/fitness');
         })
         .catch(err=>{
             console.log(err.data);

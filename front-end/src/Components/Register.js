@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import axios from 'axios';
 
@@ -15,6 +16,8 @@ function Register(){
     const [user, setUser] = useState({username:'', password:'', type:''})
     const [disabled, setDisabled] = useState(true);
 
+    const history = useHistory();
+
     const userInput = event =>{
         setUser({...user, [event.target.name]: event.target.value})
     }
@@ -28,8 +31,9 @@ function Register(){
         }
         axios.post(registerURL, newUser)
         .then(res =>{
-            console.log(newUser);
-            alert(`Thank you ${user.username} for enrolling!`)
+            console.log('ab: Register.js: registerNewUser: axios.then: res:',res, newUser);
+            alert(`Thank you ${user.username} for enrolling!`);
+            history.push('/fitness');
         })
         .catch(err =>{
             console.log(err)

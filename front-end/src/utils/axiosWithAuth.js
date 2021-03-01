@@ -5,7 +5,7 @@ const axiosWithAuth = () => {
 
     return axios.create({
         headers: {
-            authorization: token,
+            Authorization: token,
             "Access-Control-Allow-Origin": "*",
             'Acess-Control-Allow-Method': 'GET, PUT, POST, DELETE, PATCH, OPTIONS'
         }
