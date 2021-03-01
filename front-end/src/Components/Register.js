@@ -44,6 +44,7 @@ function Register(){
 
         <div>
             <form onSubmit={registerNewUser}>
+                <p>Register New User</p>
                 <label>
                     Username:
                     <input type='text' name='username' onChange={userInput}/>

@@ -38,6 +38,7 @@ function Login(){
     return(
        <div>
            <form onSubmit={userLogin}>
+               <p>Login </p>
                <label>
                    Username:
                    <input type='text' name='username' onChange={userInput}/>
