@@ -23,7 +23,8 @@ function Login() {
       .post(URL, user)
       .then((res) => {
         console.log(res.data, "LOGIN");
-        localStorage.setItem("token", res.data.token);
+        // localStorage.setItem("token", res.data.token);
+        // localStorage.setItem("user_id", res.data.id);
         alert(`Welcome ${user.username}!`);
       })
       .catch((err) => {

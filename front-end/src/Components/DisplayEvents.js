@@ -10,9 +10,9 @@ const DisplayEvents = () => {
       .then((res) => {
         console.log(res.data);
         setEvents(res.data);
-        console.log(events);
       });
   };
+  console.log(events);
   useEffect(getEvent, []);
 
   return <div>{/* <EventCard events={events} /> */}</div>;

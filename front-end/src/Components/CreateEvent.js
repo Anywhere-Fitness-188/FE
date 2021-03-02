@@ -47,7 +47,7 @@ const CreateEvent = () => {
 
   const eventPost = () => {
     axiosWithAuth()
-      .post("/api/classes", {
+      .post("api/classes", {
         name: event.name,
         type: event.type,
         time: event.time,
@@ -58,7 +58,7 @@ const CreateEvent = () => {
         size: event.size,
       })
       .then((res) => {
-        console.log("ATTN", res);
+        console.log("ATTN", res.data);
         changeCreate();
         setEvent({
           name: "",
@@ -70,6 +70,7 @@ const CreateEvent = () => {
           attendees: "",
           size: "",
         });
+        window.location.reload(false);
       });
   };
   return (
@@ -78,9 +79,7 @@ const CreateEvent = () => {
       {create && (
         <h3>
           Event Name:
-          <input 
-            onChange={changeName} 
-            type="text" value={event.name} />
+          <input onChange={changeName} type="text" value={event.name} />
         </h3>
       )}
       {create && (

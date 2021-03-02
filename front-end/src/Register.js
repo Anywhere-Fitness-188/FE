@@ -29,6 +29,8 @@ function Register() {
       .post(registerURL, newUser)
       .then((res) => {
         console.log(newUser);
+        // localStorage.setItem("token", res.data.token);
+        // localStorage.setItem("user_id", res.data.id);
         alert(`Thank you ${user.username} for enrolling!`);
       })
       .catch((err) => {
