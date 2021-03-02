@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 
@@ -18,6 +19,12 @@ function Register() {
     setUser({ ...user, [event.target.name]: event.target.value });
   };
 
+  const history = useHistory();
+
+  // const userInput = (event) => {
+  //   setUser({ ...user, [event.target.name]: event.target.value });
+  // };
+
   const registerNewUser = (event) => {
     event.preventDefault();
     const newUser = {
@@ -28,10 +35,13 @@ function Register() {
     axios
       .post(registerURL, newUser)
       .then((res) => {
-        console.log(newUser);
-        // localStorage.setItem("token", res.data.token);
-        // localStorage.setItem("user_id", res.data.id);
+        console.log(
+          "ab: Register.js: registerNewUser: axios.then: res:",
+          res,
+          newUser
+        );
         alert(`Thank you ${user.username} for enrolling!`);
+        history.push("/fitness");
       })
       .catch((err) => {
         console.log(err);
@@ -45,6 +55,7 @@ function Register() {
   return (
     <div>
       <form onSubmit={registerNewUser}>
+        <p>Register New User</p>
         <label>
           Username:
           <input type="text" name="username" onChange={userInput} />
@@ -52,7 +63,7 @@ function Register() {
         <br />
         <label>
           Password:
-          <input type="text" name="password" onChange={userInput} />
+          <input type="password" name="password" onChange={userInput} />
         </label>
         <br />
         <label>
@@ -66,7 +77,6 @@ function Register() {
         </label>
         <br />
         <label>
-          New User?
           <button disabled={disabled}>Register</button>
           <br />
           Already a Member?
