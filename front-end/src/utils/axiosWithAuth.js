@@ -1,15 +1,16 @@
-import axios from'axios';
+import axios from "axios";
 
 const axiosWithAuth = () => {
-    const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
-    return axios.create({
-        headers: {
-            Authorization: token,
-            "Access-Control-Allow-Origin": "*",
-            'Acess-Control-Allow-Method': 'GET, PUT, POST, DELETE, PATCH, OPTIONS'
-        }
-    })
+  return axios.create({
+    headers: {
+      authorization: `${token}`,
+      "Access-Control-Allow-Origin": "*",
+      "Acess-Control-Allow-Method": "GET, PUT, POST, DELETE, PATCH, OPTIONS",
+    },
+    baseURL: "https://fittness.herokuapp.com/",
+  });
 };
 
 export default axiosWithAuth;
