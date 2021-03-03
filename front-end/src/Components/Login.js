@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
+import CreateEvent from "./CreateEvent";
 import { CreateEventContext } from "../context/CreateEventContext";
 
 const schema = yup.object().shape({
@@ -14,7 +15,8 @@ const URL = "https://fittness.herokuapp.com/api/auth/login";
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" });
   const [disabled, setDisabled] = useState(true);
-  const [userId, setUserId] = useState([]);
+  const { userId, setUserId } = useContext(CreateEventContext);
+  // const [userId, setUserId] = useState();
 
   const history = useHistory();
 
@@ -28,7 +30,7 @@ const Login = () => {
       .post(URL, user)
       .then((res) => {
         console.log(res.data, "LOGIN");
-        setUserId(res.data);
+        setUserId(res.data.user_id);
         localStorage.setItem("token", res.data.token);
         alert(`Welcome ${user.username}!`);
         setTimeout(() => {
@@ -39,6 +41,7 @@ const Login = () => {
         console.log(err.data);
       });
   };
+  console.log(userId, "USERID");
   useEffect(() => {
     schema.isValid(user).then((valid) => setDisabled(!valid));
   }, [user]);
@@ -60,6 +63,7 @@ const Login = () => {
           <br />
           <button disabled={disabled}>Log In</button>
         </form>
+        <CreateEvent />
       </div>
     </CreateEventContext.Provider>
   );

@@ -5,10 +5,10 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 
 const CreateEvent = () => {
   const [create, setCreate] = useState(false);
-  // const { userId } = useContext(CreateEventContext);
-  // console.log(userId);
-  const id = useContext(CreateEventContext);
-  console.log(id, "CREATING EVENT");
+  const { userId, setUserId } = useContext(CreateEventContext);
+  console.log(userId);
+  // const id = useContext(CreateEventContext);
+  // console.log(id, "CREATING EVENT");
   const changeCreate = () => {
     setCreate(!create);
   };
@@ -23,6 +23,7 @@ const CreateEvent = () => {
     max_attendees: 0,
     user_id: 0,
   });
+  console.log(event);
 
   const changeName = (e) => {
     setEvent({ ...event, name: e.target.value });
@@ -52,19 +53,22 @@ const CreateEvent = () => {
     setEvent({ ...event, max_attendees: e.target.value });
   };
 
-  const eventPost = () => {
+  const eventPost = (e) => {
+    e.preventDefault();
+    const newEvent = {
+      name: event.name,
+      // type: event.type,
+      start_time: event.start_time,
+      duration: event.duration,
+      intensity_level: event.intensity_level,
+      location: event.location,
+      attendees: event.attendees,
+      max_attendees: event.max_attendees,
+      user_id: userId,
+    };
+    console.log(newEvent);
     axiosWithAuth()
-      .post("api/classes", {
-        name: event.name,
-        // type: event.type,
-        start_time: event.time,
-        duration: event.duration,
-        intensity_level: event.intensity,
-        location: event.location,
-        attendees: event.attendees,
-        max_attendees: event.size,
-        user_id: id.userId,
-      })
+      .post("api/classes", newEvent)
       .then((res) => {
         console.log("ATTN", res.data);
         changeCreate();
@@ -77,9 +81,8 @@ const CreateEvent = () => {
           location: "",
           attendees: 0,
           max_attendees: 0,
-          user_id: id.userId,
+          user_id: userId,
         });
-        window.location.reload(false);
       });
   };
   return (
@@ -100,7 +103,7 @@ const CreateEvent = () => {
       {create && (
         <h3>
           Start Time:
-          <input onChange={changeTime} type="text" value={event.time} />
+          <input onChange={changeTime} type="text" value={event.start_time} />
         </h3>
       )}
       {create && (
