@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
+import { CreateEventContext } from "../context/CreateEventContext";
 
 const schema = yup.object().shape({
   username: yup.string().required("Please enter your username"),
@@ -13,6 +14,7 @@ const URL = "https://fittness.herokuapp.com/api/auth/login";
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" });
   const [disabled, setDisabled] = useState(true);
+  const [userId, setUserId] = useState([]);
 
   const history = useHistory();
 
@@ -25,7 +27,8 @@ const Login = () => {
     axios
       .post(URL, user)
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data, "LOGIN");
+        setUserId(res.data);
         localStorage.setItem("token", res.data.token);
         alert(`Welcome ${user.username}!`);
         setTimeout(() => {
@@ -41,22 +44,24 @@ const Login = () => {
   }, [user]);
 
   return (
-    <div>
-      <form onSubmit={userLogin}>
-        <p>Login </p>
-        <label>
-          Username:
-          <input type="text" name="username" onChange={userInput} />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type="password" name="password" onChange={userInput} />
-        </label>
-        <br />
-        <button disabled={disabled}>Log In</button>
-      </form>
-    </div>
+    <CreateEventContext.Provider value={{ userId }}>
+      <div>
+        <form onSubmit={userLogin}>
+          <p>Login </p>
+          <label>
+            Username:
+            <input type="text" name="username" onChange={userInput} />
+          </label>
+          <br />
+          <label>
+            Password:
+            <input type="password" name="password" onChange={userInput} />
+          </label>
+          <br />
+          <button disabled={disabled}>Log In</button>
+        </form>
+      </div>
+    </CreateEventContext.Provider>
   );
 };
 
