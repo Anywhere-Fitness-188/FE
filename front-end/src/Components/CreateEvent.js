@@ -13,17 +13,17 @@ const CreateEvent = () => {
     setCreate(!create);
   };
   const [event, setEvent] = useState({
-    name: "",
+    name: "Yoga",
     // type: "",
-    start_time: "",
+    start_time: "9",
     duration: "",
     intensity_level: "",
     location: "",
     attendees: 0,
     max_attendees: 0,
-    user_id: 0,
+    user_id: 2,
   });
-  console.log(event);
+  // console.log(event);
 
   const changeName = (e) => {
     setEvent({ ...event, name: e.target.value });
