@@ -2,23 +2,34 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 // import
 
-const EventCard = () => {
+const EventCard = (props) => {
     // const value = useContext(/contextObject/);
 
+    
+    
     return (
-        <div className="event-card">
+        <div className="event-card" key={props.event.id}>
             <header className="event-name">
-                <h3>name</h3>
-                <h6>Type</h6>
+                <h3>{props.event.name}</h3>
+                <h6>{props.event.duration}</h6>
             </header>
             <section className="event-info">
-                <h4>time api stored in context</h4>
-                <h4>duration in minutes</h4>
-                <h4>intensity high medium low</h4>
-                <h4>location string</h4>
-                <h4>attendees #</h4>
-                <h4>size(max)</h4>
+                <h3>{props.event.start_time}</h3>
+                <h3>{props.event.duration}</h3>
+                <h3>{props.event.intensity_level}</h3>
+                <h3>{props.event.location}</h3>
+                <h3>{props.event.attendees}</h3>
+                <h3>{props.event.max_attendees}</h3>
             </section>
+
+            <button onClick={(e) => {
+                e.preventDefault();
+                props.setProtectedData({
+                    ...props.protectedData,
+                    isEditing:true,
+                    editing: props.event
+                })
+            }} > Edit</button>
             
         </div>
     );
@@ -27,11 +38,13 @@ const EventCard = () => {
 
 export default EventCard;
 
-//           name: "",
-//           type: "",
-//           time: "",
-//           duration: "",
-//           intensity: "",
-//           location: "",
-//           attendees: "",
-//           size: "",
+// api/classes
+// -takes { 
+    // "name": [string] (required),
+    // "start_time": [string] (required),
+    // "duration": [string],
+    // "intensity_level": [string],
+    // "location": [string],
+    // "attendees": [integer],
+    // "max_attendees": [integer]
+//      }

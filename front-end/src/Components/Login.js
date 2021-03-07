@@ -32,7 +32,7 @@ const Login = () => {
             localStorage.setItem('token', res.data.token)
             alert(`Welcome ${user.username}!`);
             setTimeout(() => {
-                history.push('/fitness');
+                history.push('/add');
             }, 5000)
         })
         .catch(err=>{

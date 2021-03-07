@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 import PrivateRoute from "./Components/PrivateRoute";
+import CreateEvent from "./Components/CreateEvent";
 import AuthRouter from "./Components/AuthRouter";
 import UserArea from "./Components/UserArea";
 import "./App.css";
+import UpdateEvent from './Components/UpdateEvent';
 
 
 
@@ -18,8 +20,13 @@ function App() {
         </header>
         <section className="main-content">
           <Switch>
+            
+          
+                    
+            {/* <PrivateRoute exact path="/edit" component={UpdateEvent} /> */}
+            <PrivateRoute exact  path="/add" component={CreateEvent} />
             <PrivateRoute exact path="/fitness" component={UserArea} />
-            <Route path="/" component={AuthRouter} />
+            <Route path="/" component={AuthRouter} /> 
           </Switch>
         </section>
         

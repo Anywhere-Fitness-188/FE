@@ -7,8 +7,10 @@ const axiosWithAuth = () => {
         headers: {
             Authorization: token,
             "Access-Control-Allow-Origin": "*",
-            'Acess-Control-Allow-Method': 'GET, PUT, POST, DELETE, PATCH, OPTIONS'
-        }
+            'Acess-Control-Allow-Method': 'GET, PUT, POST, DELETE, PATCH, OPTIONS',
+            
+        },
+        baseURL: "https://fittness.herokuapp.com/api",
     })
 };
 
