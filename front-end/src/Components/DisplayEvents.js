@@ -1,27 +1,29 @@
 import { useEffect, useState } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import EventCard from "./EventCard";
-import { eventsContext } from "../context/eventContext";
+import { DisplayContext } from "../context/DisplayContext";
 
 const DisplayEvents = () => {
   const [events, setEvents] = useState([]);
   const getEvent = () => {
     axiosWithAuth()
       .get("/api/classes")
+      // should the get take all of the class fields? Why?
       .then((res) => {
         console.log(res.data, "DISPLAY");
         setEvents(res.data);
       });
+    console.log(events);
   };
-  console.log(events);
+
   useEffect(getEvent, []);
 
   return (
-    <eventsContext.Provider value={{ events }}>
+    <DisplayContext.Provider value={{ events }}>
       <div>
-        <EventCard />
+        <EventCard values={events} />
       </div>
-    </eventsContext.Provider>
+    </DisplayContext.Provider>
   );
 };
 

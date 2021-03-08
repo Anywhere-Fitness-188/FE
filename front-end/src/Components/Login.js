@@ -4,6 +4,7 @@ import * as yup from "yup";
 import axios from "axios";
 import CreateEvent from "./CreateEvent";
 import { CreateEventContext } from "../context/CreateEventContext";
+import DisplayEvents from "./DisplayEvents";
 
 const schema = yup.object().shape({
   username: yup.string().required("Please enter your username"),
@@ -47,7 +48,7 @@ const Login = () => {
   }, [user]);
 
   return (
-    <CreateEventContext.Provider value={{ userId }}>
+    <CreateEventContext.Provider value={{ userId, user }}>
       <div>
         <form onSubmit={userLogin}>
           <p>Login </p>

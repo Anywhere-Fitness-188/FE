@@ -6,6 +6,7 @@ import UserArea from "./Components/UserArea";
 import "./App.css";
 import CreateEvent from "./Components/CreateEvent";
 import { CreateEventContext } from "./context/CreateEventContext";
+import DisplayEvents from "./Components/DisplayEvents";
 
 function App() {
   const [userId, setUserId] = useState();
@@ -26,6 +27,7 @@ function App() {
           </section>
         </div>
       </Router>
+      {/* <DisplayEvents /> */}
     </CreateEventContext.Provider>
   );
 }
